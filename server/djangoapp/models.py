@@ -16,13 +16,11 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class CarMake(models.Model):
     name = models.CharField(null=False, max_length=30)
     description = models.CharField(null=False, max_length=100)
-    website = models.URLField(null=True)
    
     def __str__(self):
         return "Name: " + self.name + "," + \
-               "Description: " + self.description + \
-               "Website: " + str(self.website)
-
+               "Description: " + self.description
+ 
 
 # <HINT> Create a Car Model model `class CarModel(models.Model):`:
 # - Many-To-One relationship to Car Make model (One Car Make has many
