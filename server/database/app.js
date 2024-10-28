@@ -2,10 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const fs = require('fs');
 const  cors = require('cors')
-const app = express()
+const app = express();
 const port = 3030;
 
-app.use(cors())
+app.use(cors());
+
 app.use(require('body-parser').urlencoded({ extended: false }));
 
 const reviews_data = JSON.parse(fs.readFileSync("reviews.json", 'utf8'));
@@ -84,7 +85,7 @@ app.get('/fetchDealers/:state', async (req, res) => {
 app.get('/fetchDealer/:id', async (req, res) => {
 //Write your code here
   try {
-    const dealerships = await Dealerships.find({id: req.params.id});
+    let dealerships = await Dealerships.find({id: req.params.id});
     res.json(dealerships);
   } catch (error) {
     res.status(500).json({ error: 'Error fetching dealerships' });
